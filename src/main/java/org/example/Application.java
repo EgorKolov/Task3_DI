@@ -10,6 +10,7 @@ public class Application {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
         
-        
+        Shop shop = context.getBean("shop", Shop.class);
+        shop.listStaff();
     }
 }
