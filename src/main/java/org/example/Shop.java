@@ -1,14 +1,20 @@
 package org.example;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 @Component
+@Configuration
 public class Shop {
+    private static final Logger logger = LoggerFactory.getLogger(Shop.class);
+    
     @Autowired // DI через поле
     private Manager manager; 
     
@@ -31,13 +37,13 @@ public class Shop {
         System.out.println("Intern: " + intern.name);
     }
     
-    @PostConstruct
+    @PostConstruct // Логгирование про создании
     public void onInitialize() {
-        System.out.println("Создан бин Shop");
+        logger.info("Создан бин Shop");
     }
     
-    @PreDestroy
+    @PreDestroy // Логгирование про разрушении
     public void onDestroy() {
-        System.out.println("Разрушен бин Shop");
+        logger.info("Разрушен бин Shop");
     }
 }
